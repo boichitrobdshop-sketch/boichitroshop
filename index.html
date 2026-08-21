@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <!-- Favicon (ব্রাউজার ট্যাব আইকন) -->
+    <link rel="icon" type="image/png" href="image/favicon.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boichitro Shop BD | Premium Emergency Food Rations</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#home">Boichitro <span>Shop</span></a>
+            </div>
+
+            
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন...">
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="#home" class="nav-link active">হোম</a>
+                <a href="#products" class="nav-link">প্রোডাক্টস</a>
+                <a href="#offers" class="nav-link">অফার</a> <!-- NEW MENU ADDED -->
+                <a href="#about" class="nav-link">আমাদের সম্পর্কে</a>
+                <a href="#contact" class="nav-link">যোগাযোগ</a>
+                <a href="#order" class="nav-link highlight">অর্ডার করুন</a>
+                <a href="#" id="trackNavBtn" class="nav-link"><i class="fa-solid fa-truck-fast"></i> ট্র্যাক অর্ডার</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+                <button class="mobile-toggle" id="menuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="badge badge-primary">PREMIUM EMERGENCY FOOD</span>
+                <h1>Be Prepared.<br>Stay Ready.</h1>
+                <p>দীর্ঘমেয়াদী জরুরি সহায়তার জন্য ভরসায় রাখুন Seven Oceans ইমার্জেন্সি ফুড রেশন। ১০০% অরিজিনাল প্রোডাক্টের নিশ্চয়তা।</p>
+                
+                <div class="hero-btns">
+                    <a href="#products" class="btn btn-primary">প্রোডাক্ট দেখুন <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#order" class="btn btn-secondary">সরাসরি অর্ডার</a>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-tag"><i class="fa-solid fa-circle-check"></i> ১০০% অরিজিনাল</div>
+                    <div class="feature-tag"><i class="fa-solid fa-truck"></i> দ্রুত ডেলিভারি</div>
+                    <div class="feature-tag"><i class="fa-solid fa-hand-holding-dollar"></i> ক্যাশ অন ডেলিভারি</div>
+                </div>
+            </div>
+            <div class="hero-slider-box">
+                <div class="slider-wrapper">
+                    <span class="product-tag">Seven Oceans</span>
+                    <img src="image/Seven Oceans2.jpg" alt="Seven Oceans Emergency Food" id="sliderImg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">ALL PRODUCTS</span>
+                <h2>আমাদের প্রোডাক্টসমূহ</h2>
+                <p>আপনার প্রয়োজনীয় পণ্যটি বেছে নিন</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+
+
+
+                <!-- Original Products -->
+            
+                <div class="product-card" data-id="1" data-name=" Seven Oceans " data-price="500">
+                    <span class="card-badge">Popular</span>
+
+                    <div class="product-img">
+                        <img src="image/Seven Oceans.jpg" alt="Pack 1">
+                    </div>
+            
+                    <div class="product-details">
+                        <h3>seven oceans </h3>
+                        <p class="desc"> ১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)</p>
+
+                        <div class="price-box">
+                            <span class="price">৳500</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+
+                    </div>
+                </div> 
+            
+
+
+
+
+                <!-- ১. data-price="এখানে দাম দিন" (এটি কোড বোঝার জন্য) -->
+                <div class="product-card" data-id="5" data-name="seven oceans water" data-price="90">
+
+
+                    <span class="card-badge">Popular</span>
+                    <div class="product-img">
+                    <img src="image/Seven_Oceans_emergency_water.jpeg" alt="Pack 1">
+                    </div>
+
+                
+                    <div class="product-details">
+                        <h3>seven oceans water</h3>
+                        <p class="desc"> ১টি Emergency Water Pack — (৫০০ ml) </p>
+                        <div class="price-box">
+
+                     
+                    
+                    <div class="price-box">
+                        <!-- ২. এখানে দাম দিন (এটি কাস্টমার দেখবে) -->
+                        <span class="price">৳90</span> 
+                    </div>
+
+                    <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                    </div>
+            
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- NEW SECTION: OFFERS -->
+    <section id="offers" class="products-section offers-bg">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">SUPER DEALS</span>
+                <h2>বর্তমান আকর্ষণীয় অফার</h2>
+                <p>আমাদের স্পেশাল অফার প্যাকগুলো থেকে বেছে নিন</p>
+            </div>
+            
+            <div class="products-grid">
+
+
+
+
+              <!-- Pack 2 -->
+                <div class="product-card" data-id="2" data-name="Seven Oceans (Pack - 2)" data-price="980">
+                    <span class="card-badge badge-sale">Best Value</span>
+                    <div class="product-img">
+                        <img src="image/Seven Oceans1.jpg" alt="Pack 2">
+                    </div>
+                    <div class="product-details">
+                        <h3>Seven Oceans (Pack - 2)</h3>
+                        <p class="desc">২ টি রেশন প্যাকের সাশ্রয়ী সেট</p>
+                        <div class="price-box">
+                            <span class="price">৳980</span>
+                            <span class="old-price">৳1000</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                  <!-- Pack 3 -->
+                <div class="product-card" data-id="3" data-name="Seven Oceans (Pack - 3)" data-price="1470">
+                    <span class="card-badge">Special Offer</span>
+                    <div class="product-img">
+                        <img src="image/Seven Oceans3.jpeg" alt="Pack 3">
+                    </div>
+                    <div class="product-details">
+                        <h3>Seven Oceans (Pack - 3)</h3>
+                        <p class="desc">৩ টি রেশন প্যাক ফ্যামিলি অফার</p>
+                        <div class="price-box">
+                            <span class="price">৳1,470</span>
+                            <span class="old-price">৳1500</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                    <!-- Pack 5 -->
+                <div class="product-card" data-id="4" data-name="Seven Oceans (Pack - 5)" data-price="2450">
+                    <span class="card-badge badge-mega">Mega Pack</span>
+                    <div class="product-img">
+                        <img src="image/Seven Oceans(Pack - 5).jpeg" alt="Pack 5">
+                    </div>
+                    <div class="product-details">
+                        <h3>Seven Oceans (Pack - 5)</h3>
+                        <p class="desc">৫ টি রেশন প্যাক মেগা কন্টেইনার</p>
+                        <div class="price-box">
+                            <span class="price">৳2,450</span>
+                            <span class="old-price">৳2500</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- watar Pack 2 -->
+                <div class="product-card" data-id="2" data-name="Seven Oceans water (Pack - 2)" data-price="150">
+                    <span class="card-badge badge-sale">Best Value</span>
+                    <div class="product-img">
+                        <img src="image/Seven Oceans water Pack - 2.jpeg" alt="Pack 2">
+                    </div>
+                    <div class="product-details">
+                        <h3>Seven Oceans water Pack - 2</h3>
+                        <p class="desc">২ টি রেশন প্যাকের সাশ্রয়ী সেট</p>
+                        <div class="price-box">
+                            <span class="price">৳150</span>
+                            <span class="old-price">৳180</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+
+                  <!-- water Pack 5 -->
+                <div class="product-card" data-id="4" data-name="Seven Oceans water(Pack - 5)" data-price="330">
+                    <span class="card-badge badge-mega">Mega Pack</span>
+                    <div class="product-img">
+                        <img src="image/Seven Oceans water(Pack - 5).jpeg" alt="Pack 5">
+                    </div>
+                    <div class="product-details">
+                        <h3>Seven Oceans water(Pack - 5)</h3>
+                        <p class="desc">৫টি Emergency Water Pack — (2,৫০০ ml)</p>
+                        <div class="price-box">
+                            <span class="price">৳330</span>
+                            <span class="old-price">৳450</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন</button>
+                            <button class="btn-buy-now">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>
+
+          
+                 
+                
+
+                
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    
+
+    <!-- Order Section -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <div class="order-card">
+                <h2><i class="fa-solid fa-cart-flatbed"></i> সরাসরি কুইক অর্ডার করুন</h2>
+                <p>ফর্মটি পূরণ করে সরাসরি অর্ডার করুন। কার্টে প্রোডাক্ট থাকলে সেটি অটোমেটিক যুক্ত হয়ে যাবে।</p>
+
+                <form id="orderForm" class="order-form">
+                    <div class="form-group" id="singleProductSelectDiv">
+                        <label for="productSelect">প্যাকেজ নির্বাচন করুন *</label>
+                    <select id="productSelect" class="form-control">
+                    <!-- জাভাস্ক্রিপ্ট স্বয়ংক্রিয়ভাবে প্রোডাক্ট সেকশন থেকে এখানে অপশনগুলো নিয়ে আসবে -->
+                    </select>
+                    </div>
+
+                    <div class="form-group" id="singleQtyDiv">
+                        <label>পরিমাণ (Quantity) *</label>
+                        <div class="quantity-control">
+                            <button type="button" id="qtyMinus" class="qty-btn">-</button>
+                            <input type="number" id="orderQty" value="1" min="1" readonly>
+                            <button type="button" id="qtyPlus" class="qty-btn">+</button>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="custName">আপনার নাম *</label>
+                            <input type="text" id="custName" class="form-control" placeholder="যেমন: মো: আরিফুল ইসলাম" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="custPhone">মোবাইল নম্বর *</label>
+                            <input type="tel" id="custPhone" class="form-control" placeholder="018XXXXXXXX" pattern="[0-9]{11}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="custAddress">পূর্ণাঙ্গ ঠিকানা *</label>
+                        <textarea id="custAddress" class="form-control" rows="2" placeholder="বাসা/রোড নং, এলাকা, থানা ও জেলা" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ডেলিভারি এলাকা *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="deliveryCharge" value="100" checked> চট্টগ্রাম শহর (৳100)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="deliveryCharge" value="150"> চট্টগ্রামের বাইরে (৳150)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="order-summary-box">
+                        <div class="summary-row">
+                            <span>পণ্যের দাম:</span>
+                            <span id="subtotalPrice">৳0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>ডেলিভারি চার্জ:</span>
+                            <span id="deliveryPrice">৳100</span>
+                        </div>
+                        <hr>
+                        <div class="summary-row total">
+                            <span>সর্বমোট:</span>
+                            <span id="finalTotalPrice">৳0</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit-order">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে অর্ডার কনফার্ম করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">CONTACT</span>
+                <h2>যোগাযোগ করুন</h2>
+            </div>
+
+            <div class="contact-grid">
+
+
+                
+                <div class="contact-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>ফোন নম্বর</h3>
+                    <p>+880 1818-028094</p>
+                </div>
+
+                <div class="contact-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h3>হোয়াটসঅ্যাপ</h3>
+                    <a href="https://wa.me/8801818028094" target="_blank" rel="noopener noreferrer">হোয়াটসঅ্যাপে যোগাযোগ করুন</a>
+                </div>
+
+
+                <div class="contact-box">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <h3>ফেসবুক</h3>
+                    <p>
+                    <a href="https://www.facebook.com/boichitrobdshop" target="_blank" rel="noopener noreferrer">আমাদের ফেসবুক পেজ </a>
+                    </p>
+                </div>
+
+                <div class="contact-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>আমাদের ঠিকানা</h3>
+                    <p>চট্টগ্রাম, বাংলাদেশ</p>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+        <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">ABOUT US</span>
+                <h2>আমাদের সম্পর্কে</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Boichitro Shop BD</strong> বাংলাদেশে দীর্ঘমেয়াদী এবং জরুরি খাদ্য সরবরাহের একটি বিশ্বস্ত নাম। দুর্যোগ, বন্যা, ট্রেকিং বা যেকোনো জরুরি পরিস্থিতিতে টিকে থাকার জন্য আমরা ১০০% অরিজিনাল <strong>Seven Oceans</strong> রেশন সরবরাহ করে থাকি।</p>
+                    <p>আমাদের লক্ষ্য হলো বাংলাদেশের যেকোনো প্রান্তে দ্রুততম সময়ের মধ্যে সর্বোচ্চ গুণগত মানের সারভাইভাল কিট ও ফুড পৌঁছে দেওয়া। গ্রাহকের সন্তুষ্টি এবং পণ্যের অরিজিনালিটিই আমাদের মূল লক্ষ্য।</p>
+                    <ul class="about-list">
+                        <li><i class="fa-solid fa-check-circle"></i> ১০০% অরিজিনাল নরওয়েজিয়ান প্রোডাক্ট</li>
+                        <li><i class="fa-solid fa-check-circle"></i> মেয়াদোত্তীর্ণের দীর্ঘ সময় (Long Shelf Life)</li>
+                        <li><i class="fa-solid fa-check-circle"></i> ক্যাশ অন ডেলিভারি সুবিধা</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!-- Slide-out Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> আপনার কার্ট</h3>
+            <button class="close-drawer" id="closeCart"> &times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <!-- Items injected by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>মোট বিল:</span>
+                <strong id="cartTotal">৳0</strong>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">অর্ডার কনফার্ম করতে যান</button>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Mobile Bottom Navigation (App-like) -->
+   <!-- Mobile Bottom Navigation (App-like) -->
+    <nav class="mobile-bottom-nav">
+        <a href="#home" class="mobile-nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </a>
+        <a href="#products" class="mobile-nav-item">
+            <i class="fa-solid fa-box-open"></i>
+            <span>প্রোডাক্ট</span>
+        </a>
+        <a href="#offers" class="mobile-nav-item">
+            <i class="fa-solid fa-tags"></i>
+            <span>অফার</span>
+        </a>
+        <!-- কার্ট বাটনটিকে অন্যগুলোর মতো করা হয়েছে -->
+        <a href="javascript:void(0)" class="mobile-nav-item cart-trigger" id="mobileCartBtn">
+            <div class="cart-icon-wrapper">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="mobileCartBadge">0</span>
+            </div>
+            <span>কার্ট</span>
+        </a>
+        <a href="#order" class="mobile-nav-item">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>অর্ডার</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item">
+            <i class="fa-solid fa-headset"></i>
+            <span>সাপোর্ট</span>
+        </a>
+    </nav>
+
+
+
+
+
+    <!-- Tracking Modal -->
+    <div class="modal" id="trackingModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeTracking">& times;</button>
+            <h2><i class="fa-solid fa-magnifying-glass-location"></i> অর্ডার ট্র্যাক করুন</h2>
+            <div class="track-form">
+                <input type="text" id="trackInput" placeholder="01818028094">
+                <button id="trackSearchBtn" class="btn btn-primary">খুঁজুন</button>
+            </div>
+            <div class="track-result" id="trackResult"></div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/8801818028094" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>সাপোর্ট</span>
+    </a>
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-box">
+                <h2>Boichitro <span>Shop</span></h2>
+                <p>সারা বাংলাদেশে অরিজিনাল ইমার্জেন্সি ফুড ও সারভাইভাল কিট সরবরাহে আপনার আস্থাভাজন প্রতিষ্ঠান।</p>
+            </div>
+            <div class="footer-box">
+                <h3>নেভিগেশন</h3>
+                <li><a href="#home">হোম</a></li>
+                <li><a href="#about">সম্পর্কে</a></li>
+                <li><a href="#offers">অফার</a></li>
+                <li><a href="#order">অর্ডার</a></li>
+            </div>
+            <div class="footer-box">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fa-solid fa-phone"></i> +880 1818-028094</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Boichitro Shop BD. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
