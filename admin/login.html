@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Boichitro Shop BD</title>
+    <link rel="icon" type="image/png" href="../image/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+</head>
+<body class="admin-body">
+
+    <div class="admin-login-wrapper">
+        <div class="admin-login-card">
+            <div class="admin-login-icon-circle">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="admin-login-logo">Boichitro <span>Shop</span></div>
+            <p class="subtitle">Admin Panel — সাইন ইন করুন</p>
+
+            <div id="loginErrorMsg"></div>
+
+            <form id="adminLoginForm" novalidate>
+                <div class="form-group-admin">
+                    <label for="adminEmail">ইমেইল</label>
+                    <input type="text" id="adminEmail" class="form-control-admin" placeholder="admin@boichitrobd.com" autocomplete="username" required>
+                </div>
+                <div class="form-group-admin">
+                    <label for="adminPassword">পাসওয়ার্ড</label>
+                    <input type="password" id="adminPassword" class="form-control-admin" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn-admin btn-admin-primary btn-admin-block">
+                    <i class="fa-solid fa-right-to-bracket"></i> লগইন করুন
+                </button>
+            </form>
+
+            <div class="admin-login-hint">
+                <i class="fa-solid fa-circle-info"></i> ডিফল্ট লগইন: <strong>admin@boichitrobd.com</strong> / <strong>admin123</strong><br>
+                লগইন করার পর "সেটিংস" থেকে পাসওয়ার্ড অবশ্যই পরিবর্তন করে নিন।
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
