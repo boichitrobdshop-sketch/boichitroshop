@@ -634,12 +634,7 @@ function goToProductDetails(id) {
 
     window.addEventListener("keydown", function (e) {
         // Detect Ctrl + Shift + A (or Cmd + Shift + A on macOS)
-        const isKeyA =
-            e.key === "A" ||
-            e.key === "a" ||
-            e.code === "KeyA" ||
-            e.keyCode === 65;
-
+        const isKeyA = e.key === "A" || e.key === "a" || e.code === "KeyA" || e.keyCode === 65;
         const hasModifiers = (e.ctrlKey || e.metaKey) && e.shiftKey;
 
         if (hasModifiers && isKeyA) {
@@ -647,11 +642,10 @@ function goToProductDetails(id) {
             e.stopPropagation();
 
             const currentPath = window.location.pathname;
-
             if (currentPath.includes("/admin/")) {
-                window.location.href = "/login.html";
+                window.location.href = "login.html";
             } else {
-                window.location.href = "/admin/login.html";
+                window.location.href = "admin/login.html";
             }
         }
     }, true);
