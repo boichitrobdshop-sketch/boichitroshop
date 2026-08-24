@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রোডাক্ট ডিটেইলস | Boichitro Shop BD</title>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            try {
+                var savedTheme = localStorage.getItem('boichitroTheme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">Boichitro <span>Shop</span></a>
+            </div>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন...">
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" data-section="home">হোম</a>
+                <a href="products.html" class="nav-link active" data-page="products">প্রোডাক্টস</a>
+                <a href="offers.html" class="nav-link" data-page="offers">অফার</a>
+                <a href="index.html#about" class="nav-link" data-section="about">আমাদের সম্পর্কে</a>
+                <a href="index.html#contact" class="nav-link" data-section="contact">যোগাযোগ</a>
+                <a href="checkout.html" class="nav-link highlight" data-page="checkout">অর্ডার করুন</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Theme" title="ডার্ক/লাইট মোড">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="cart-icon" id="cartIcon" title="কার্ট দেখুন">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+                <button class="mobile-toggle" id="menuBtn" aria-label="মেনু খুলুন">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container single-product-main" id="productDetailsWrapper">
+        <!-- Rendered dynamically by script.js -->
+    </main>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> আপনার কার্ট</h3>
+            <button class="close-drawer" id="closeCart" aria-label="কার্ট বন্ধ করুন">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>মোট বিল:</span>
+                <strong id="cartTotal">৳0</strong>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">অর্ডার কনফার্ম করতে যান</button>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </a>
+        <a href="products.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-box-open"></i>
+            <span>প্রোডাক্ট</span>
+        </a>
+        <a href="offers.html" class="mobile-nav-item">
+            <i class="fa-solid fa-tags"></i>
+            <span>অফার</span>
+        </a>
+        <a href="javascript:void(0)" class="mobile-nav-item cart-trigger" id="mobileCartBtn">
+            <div class="cart-icon-wrapper">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="mobileCartBadge">0</span>
+            </div>
+            <span>কার্ট</span>
+        </a>
+        <a href="checkout.html" class="mobile-nav-item">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>অর্ডার</span>
+        </a>
+    </nav>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/8801818028094" target="_blank" class="whatsapp-float" rel="noopener noreferrer" title="WhatsApp সাপোর্ট">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>সাপোর্ট</span>
+    </a>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-box">
+                <h2>Boichitro <span>Shop</span></h2>
+                <p>সারা বাংলাদেশে অরিজিনাল ইমার্জেন্সি ফুড ও সারভাইভাল কিট সরবরাহে আপনার আস্থাভাজন প্রতিষ্ঠান।</p>
+            </div>
+            <div class="footer-box">
+                <h3>গুরুত্বপূর্ণ লিঙ্ক</h3>
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="products.html">প্রোডাক্টস</a></li>
+                    <li><a href="offers.html">অফার</a></li>
+                    <li><a href="checkout.html">অর্ডার</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fa-solid fa-phone"></i> +880 1818-028094</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Boichitro Shop BD. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
