@@ -143,6 +143,22 @@ const DEFAULT_COUPONS = [
         value: 100,
         minOrder: 1000,
         active: true
+    },
+    {
+        id: "coupon-3",
+        code: "2nd100",
+        type: "fixed",
+        value: 100,
+        minOrder: 1000,
+        active: true
+    },
+    {
+        id: "coupon-4",
+        code: "regular",
+        type: "percent",
+        value: 20,
+        minOrder: 2000,
+        active: true
     }
 ];
 
