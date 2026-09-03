@@ -41,6 +41,21 @@ const DEFAULT_PRODUCTS_DATA = [
         packageInfo: "পরিমাণ: ৫০০ মি.লি., ৫ বছরের মেয়াদী বিশুদ্ধ জরুরি পানীয় জল, আন্তর্জাতিক SOLAS স্ট্যান্ডার্ড অনুমোদিত প্যাকেজড ওয়াটার।"
     },
     {
+    id: "Huahai emergency food rations - 1",
+    name: "Huahai Emergency Food Rations",
+    category: "Emergency Food",
+    price: 280,
+    oldPrice: null,
+    image: "image/Huahai emergency-1.png",
+    description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০~৫৫০g)",
+    badge: "New",
+    type: "product",
+    productType: "regular",
+    featured: true,
+    active: true,
+    packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
+    },
+    {
         id: "seven-oceans-pack-2",
         name: "Seven Oceans (Pack - 2)",
         category: "Emergency Food",
@@ -54,6 +69,21 @@ const DEFAULT_PRODUCTS_DATA = [
         featured: true,
         active: true,
         packageInfo: "২ টি অরিজিনাল ৫০০ গ্রাম সাত মহাসাগরের রেশন প্যাকের মেগা সাশ্রয়ী কম্বো (মোট ১,০০০ গ্রাম, ৪,৮০০ কিলোক্যালোরি শক্তি)।"
+    },
+   {
+        id: "huahai-pack-2",
+        name: "Huahai Emergency Rations (Pack - 2)",
+        category: "Emergency Food",
+        price: 500,
+        oldPrice: 560,
+        image: "image/Huahai emergency-2.jpeg",
+        description: "২টি Huahai Ration একসাথে — সাশ্রয়ী কম্বো",
+        badge: "Best Value",
+        type: "offer",
+        productType: "offer",
+        featured: true,
+        active: true,
+        packageInfo: "Huahai Emergency Life-Saving Food Rations (Pack - 2) — ২টি প্যাক একসাথে কিনলে প্রতিটি মাত্র ৳250! মোট ১,০০০~১,১০০ গ্রাম, ৩২ টি ব্লক। জরুরি পরিস্থিতিতে পরিবারের জন্য আদর্শ।"
     },
     {
         id: "seven-oceans-pack-3",
