@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চেকআউট ও অর্ডার কনফার্ম | Boichitro Shop BD</title>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            try {
+                var savedTheme = localStorage.getItem('boichitroTheme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="script.js" defer></script>
+</head>
+<body class="checkout-page-body">
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Compact Checkout Header -->
+    <header class="checkout-header">
+        <div class="container checkout-header-content">
+            <a href="products.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> শপিং চালিয়ে যান</a>
+            <div class="logo">
+                <a href="index.html">Boichitro <span>Shop</span></a>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Theme" title="ডার্ক/লাইট মোড">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="cart-icon" id="cartIcon" title="কার্ট দেখুন">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-container container">
+        <!-- Empty Cart Display (visible when cart is empty) -->
+        <div id="checkoutEmptyState" class="checkout-card checkout-empty-card" style="display: none;">
+            <div class="empty-cart-view">
+                <div class="empty-icon-circle">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h2>আপনার কার্ট বর্তমানে খালি আছে!</h2>
+                <p>অর্ডার কনফার্ম করার জন্য অনুগ্রহ করে আপনার প্রয়োজনীয় পণ্য কার্টে যোগ করুন।</p>
+                <div class="empty-actions">
+                    <a href="products.html" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-box-open"></i> প্রোডাক্ট দেখুন
+                    </a>
+                    <a href="offers.html" class="btn btn-secondary btn-lg">
+                        <i class="fa-solid fa-tags"></i> বর্তমান অফারসমূহ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Form (visible when cart has items) -->
+        <form id="checkoutForm" novalidate>
+            <div class="checkout-grid" id="checkoutGrid">
+                
+                <!-- Left Column: 1. Order Review & 2. Shipping Address -->
+                <div class="checkout-col checkout-left">
+                    
+                    <!-- Section 1: Order Review -->
+                    <div class="checkout-card">
+                        <div class="card-header-title">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <h3>১. আপনার অর্ডারকৃত পণ্যসমূহ (Order Review)</h3>
+                        </div>
+                        <div id="checkoutItemsList" class="checkout-items-list">
+                            <!-- Items populated dynamically by script.js -->
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Shipping Address -->
+                    <div class="checkout-card">
+                        <div class="card-header-title">
+                            <i class="fa-solid fa-truck-ramp-box"></i>
+                            <h3>২. ডেলিভারি ও কাস্টমার তথ্য (Shipping Details)</h3>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="custName">আপনার পূর্ণ নাম *</label>
+                                <input type="text" id="custName" class="form-control" placeholder="যেমন: মো: আরিফুল ইসলাম" required autocomplete="name">
+                                <span class="error-msg" id="errCustName"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="custPhone">মোবাইল নম্বর *</label>
+                                <input type="tel" id="custPhone" class="form-control" placeholder="018XXXXXXXX" pattern="[0-9]{11}" required autocomplete="tel">
+                                <span class="error-msg" id="errCustPhone"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="custEmail">ইমেইল (Optional)</label>
+                            <input type="email" id="custEmail" class="form-control" placeholder="example@gmail.com" autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="custAddress">পূর্ণাঙ্গ ঠিকানা *</label>
+                            <textarea id="custAddress" class="form-control" rows="2" placeholder="বাসা/রোড নং, এলাকা/মহল্লা, উপজেলা/থানা, ল্যান্ডমার্ক" required autocomplete="street-address"></textarea>
+                            <span class="error-msg" id="errCustAddress"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="custDistrict">জেলা *</label>
+                            <input type="text" id="custDistrict" class="form-control" placeholder="যেমন: চট্টগ্রাম / ঢাকা" required autocomplete="address-level2">
+                            <span class="error-msg" id="errCustDistrict"></span>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>ডেলিভারি এলাকা *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="deliveryCharge" value="100" checked> চট্টগ্রাম শহর — ৳100
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="deliveryCharge" value="150"> চট্টগ্রামের বাইরে — ৳150
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: 3. Summary & Coupon, Submit -->
+                <div class="checkout-col checkout-right">
+
+                    <!-- Section 3: Order Summary (Includes Coupon) -->
+                    <div class="checkout-card">
+                        <div class="card-header-title">
+                            <i class="fa-solid fa-receipt"></i>
+                            <h3>৩. অর্ডার সামারি (Order Summary)</h3>
+                        </div>
+
+                        <!-- Coupon Box inside Summary -->
+                        <details class="coupon-accordion" style="margin-bottom: 16px;">
+                            <summary class="coupon-title">
+                                <span><i class="fa-solid fa-ticket"></i> কোনো কুপন বা ভাউচার কোড আছে?</span>
+                                <i class="fa-solid fa-chevron-down arrow"></i>
+                            </summary>
+                            <div class="coupon-box">
+                                <input type="text" id="couponCode" class="form-control" placeholder="কুপন কোড লিখুন">
+                                <button type="button" id="applyCouponBtn" class="btn btn-secondary">Apply</button>
+                            </div>
+                            <span class="coupon-status-msg" id="couponStatus"></span>
+                        </details>
+
+                        <div class="summary-list">
+                            <div class="summary-row">
+                                <span>সাবটোটাল (পণ্য মূল্য):</span>
+                                <span id="summarySubtotal">৳0</span>
+                            </div>
+                            <div class="summary-row" id="couponDiscountRow" style="display: none; color: #16a34a;">
+                                <span>কুপন ডিসকাউন্ট:</span>
+                                <span id="summaryDiscount">-৳0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>ডেলিভারি চার্জ:</span>
+                                <span id="summaryDelivery">৳100</span>
+                            </div>
+                            <hr>
+                            <div class="summary-row total">
+                                <span>সর্বমোট বিল (Total):</span>
+                                <span id="summaryGrandTotal">৳100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="placeOrderBtn" class="btn btn-submit-order btn-lg btn-block">
+                        <i class="fa-brands fa-whatsapp"></i> <span id="btnText">অর্ডার কনফার্ম করুন — ৳100</span>
+                    </button>
+
+                </div>
+            </div>
+        </form>
+
+        <!-- Order Success / Confirmation State (Visible after order is placed) -->
+        <div id="orderSuccessState" class="checkout-card order-success-card" style="display: none;">
+            <div class="success-banner">
+                <div class="success-icon-badge">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2>ধন্যবাদ! আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে</h2>
+                <p class="order-subtitle">অর্ডার আইডি: <strong id="succOrderId" class="order-id-highlight">#BC-10001</strong></p>
+                <div class="order-time-tag" id="succOrderTime"><i class="fa-regular fa-clock"></i> সময় লোড হচ্ছে...</div>
+            </div>
+
+            <!-- WhatsApp Action Highlight Box -->
+            <div class="whatsapp-prompt-box">
+                <div class="whatsapp-prompt-header">
+                    <div class="wa-icon-circle">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="wa-prompt-text">
+                        <h4>WhatsApp-এ অর্ডারটি চূড়ান্তভাবে নিশ্চিত করুন</h4>
+                        <p>অর্ডারটি দ্রুত ডেলিভারির জন্য নিচের বাটনে ক্লিক করে অর্ডারের বিবরণীসহ আমাদের WhatsApp-এ মেসেজ পাঠান।</p>
+                    </div>
+                </div>
+                <a id="succWhatsappBtn" href="#" target="_blank" class="btn btn-whatsapp-large" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার কনফার্ম মেসেজ পাঠান
+                </a>
+            </div>
+
+            <!-- Order Invoice Memo / Receipt Breakdown -->
+            <div class="order-receipt-box">
+                <div class="receipt-header">
+                    <div class="receipt-title">
+                        <i class="fa-solid fa-file-invoice"></i> অর্ডারের রশিদ ও সারসংক্ষেপ (Receipt)
+                    </div>
+                    <button type="button" class="btn btn-print-receipt" onclick="window.print()">
+                        <i class="fa-solid fa-print"></i> রশিদ প্রিন্ট করুন
+                    </button>
+                </div>
+
+                <div class="receipt-customer-grid">
+                    <div class="receipt-info-item">
+                        <span class="info-label">কাস্টমার নাম:</span>
+                        <span class="info-val" id="succCustName">-</span>
+                    </div>
+                    <div class="receipt-info-item">
+                        <span class="info-label">মোবাইল নম্বর:</span>
+                        <span class="info-val" id="succCustPhone">-</span>
+                    </div>
+                    <div class="receipt-info-item full-width">
+                        <span class="info-label">ডেলিভারি ঠিকানা:</span>
+                        <span class="info-val" id="succCustAddress">-</span>
+                    </div>
+                    <div class="receipt-info-item">
+                        <span class="info-label">ডেলিভারি এরিয়া:</span>
+                        <span class="info-val" id="succAreaName">চট্টগ্রাম শহর</span>
+                    </div>
+                </div>
+
+                <div class="receipt-items-table">
+                    <div class="table-header">
+                        <span class="col-item">অর্ডারকৃত পণ্য</span>
+                        <span class="col-qty">পরিমাণ</span>
+                        <span class="col-price">মূল্য</span>
+                    </div>
+                    <div id="succItemsList" class="table-body">
+                        <!-- Items rendered dynamically -->
+                    </div>
+                </div>
+
+                <div class="receipt-totals-list">
+                    <div class="receipt-row">
+                        <span>সাবটোটাল (পণ্য মূল্য):</span>
+                        <strong id="succSubtotal">৳0</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>ডেলিভারি চার্জ:</span>
+                        <strong id="succDelivery">৳100</strong>
+                    </div>
+                    <div class="receipt-row total-row">
+                        <span>সর্বমোট প্রদেয় বিল (Total):</span>
+                        <strong id="succGrandTotal">৳0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Action Buttons -->
+            <div class="success-footer-actions">
+                <a href="index.html" class="btn btn-primary btn-lg">
+                    <i class="fa-solid fa-house"></i> হোম পেজে যান
+                </a>
+                <a href="products.html" class="btn btn-secondary btn-lg">
+                    <i class="fa-solid fa-bag-shopping"></i> আরও কেনাকাটা করুন
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> আপনার কার্ট</h3>
+            <button class="close-drawer" id="closeCart" aria-label="কার্ট বন্ধ করুন">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>মোট বিল:</span>
+                <strong id="cartTotal">৳0</strong>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">চেকআউট পেজে যান</button>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </a>
+        <a href="products.html" class="mobile-nav-item">
+            <i class="fa-solid fa-box-open"></i>
+            <span>প্রোডাক্ট</span>
+        </a>
+        <a href="offers.html" class="mobile-nav-item">
+            <i class="fa-solid fa-tags"></i>
+            <span>অফার</span>
+        </a>
+        <a href="javascript:void(0)" class="mobile-nav-item cart-trigger" id="mobileCartBtn">
+            <div class="cart-icon-wrapper">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="mobileCartBadge">0</span>
+            </div>
+            <span>কার্ট</span>
+        </a>
+        <a href="checkout.html" class="mobile-nav-item active">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>অর্ডার</span>
+        </a>
+    </nav>
+
+    <footer class="footer">
+        <div class="container text-center" style="text-align: center;">
+            <p>© 2026 Boichitro Shop BD. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
