@@ -184,7 +184,7 @@ const DEFAULT_SETTINGS = {
     siteName: "Boichitro Shop BD",
     whatsappNumber: "8801818028094",   // ← WhatsApp নম্বর (880 দিয়ে শুরু, + বা - ছাড়া)
     deliveryChattogram: 70,            // ← চট্টগ্রাম শহরের ডেলিভারি চার্জ (টাকা)
-    deliveryOutside: 120,              // ← চট্টগ্রামের বাইরে ডেলিভারি চার্জ (টাকা)
+    deliveryOutside: 150,              // ← চট্টগ্রামের বাইরে ডেলিভারি চার্জ (টাকা)
     currencySymbol: "৳",
     facebookUrl: "https://facebook.com/boichitrobdshop",
     address: "চট্টগ্রাম, বাংলাদেশ"
@@ -209,6 +209,14 @@ const DEFAULT_COUPONS = [
         value: 100,
         minOrder: 1000,
         active: true
+    },
+    {
+        id: "coupon-3",
+        code: "2nd10",
+        type: "percent",
+        value: 10,
+        minOrder: 300,
+        active: true
     }
 ];
 
@@ -218,7 +226,9 @@ const STORAGE_KEYS = {
     PRODUCTS: "boichitro_db_products",           // পণ্য ডেটা (cache of DEFAULT_PRODUCTS_DATA)
     PRODUCTS_VERSION: "boichitro_db_products_v",  // DEFAULT_PRODUCTS_DATA-এর ফিঙ্গারপ্রিন্ট — কোড পরিবর্তন হলে এটাও পরিবর্তন হয়
     SETTINGS: "boichitro_db_settings",   // ডেলিভারি চার্জ, WhatsApp নম্বর ইত্যাদি
+    SETTINGS_VERSION: "boichitro_db_settings_v", // DEFAULT_SETTINGS-এর ফিঙ্গারপ্রিন্ট — কোড পরিবর্তন হলে এটাও পরিবর্তন হয়
     COUPONS:  "boichitro_db_coupons",    // কুপন কোড
+    COUPONS_VERSION: "boichitro_db_coupons_v",   // DEFAULT_COUPONS-এর ফিঙ্গারপ্রিন্ট — কোড পরিবর্তন হলে এটাও পরিবর্তন হয়
     ORDERS:   "boichitro_db_orders"      // অর্ডার রেকর্ড
 };
 
@@ -252,6 +262,17 @@ function _fnv1aHash(str) {
 // Computed once per page load from the current DEFAULT_PRODUCTS_DATA in
 // the code — this is what makes edits/removals/additions "automatic".
 const CATALOG_VERSION = _fnv1aHash(JSON.stringify(DEFAULT_PRODUCTS_DATA));
+
+// Same idea for DEFAULT_SETTINGS (delivery charge, WhatsApp নম্বর, ইত্যাদি)
+// and DEFAULT_COUPONS — this is the fix for the "changes only show up in
+// Incognito" bug: previously these were cached in localStorage forever
+// with no way to detect that the code had changed, so returning visitors
+// (with an old cached copy already saved) kept seeing stale values while
+// Incognito (no cache yet) correctly showed the latest code. Now, just
+// like products, a fingerprint is compared on every load and the cache
+// is refreshed automatically whenever the code changes.
+const SETTINGS_VERSION = _fnv1aHash(JSON.stringify(DEFAULT_SETTINGS));
+const COUPONS_VERSION = _fnv1aHash(JSON.stringify(DEFAULT_COUPONS));
 
 // Helper functions for clean classification
 function isRegularProduct(p) {
@@ -323,8 +344,16 @@ function saveDBProducts(products) {
 function getDBSettings() {
     if (_dbSettingsCache) return _dbSettingsCache;
     try {
+        const storedVersion = localStorage.getItem(STORAGE_KEYS.SETTINGS_VERSION);
         const data = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-        if (data) {
+
+        // Only trust the cached copy if it was saved from the SAME
+        // DEFAULT_SETTINGS fingerprint we have right now. If the code was
+        // edited since that copy was saved (delivery charge, WhatsApp
+        // number, etc.), storedVersion !== SETTINGS_VERSION and we fall
+        // through to a full resync below — this is what fixes the
+        // stale-data bug.
+        if (data && storedVersion === SETTINGS_VERSION) {
             _dbSettingsCache = { ...DEFAULT_SETTINGS, ...JSON.parse(data) };
             return _dbSettingsCache;
         }
@@ -338,6 +367,7 @@ function getDBSettings() {
 function saveDBSettings(settings) {
     try {
         localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings));
+        localStorage.setItem(STORAGE_KEYS.SETTINGS_VERSION, SETTINGS_VERSION);
         _dbSettingsCache = settings;
     } catch (e) {
         console.error("Error saving settings db:", e);
@@ -346,8 +376,12 @@ function saveDBSettings(settings) {
 
 function getDBCoupons() {
     try {
+        const storedVersion = localStorage.getItem(STORAGE_KEYS.COUPONS_VERSION);
         const data = localStorage.getItem(STORAGE_KEYS.COUPONS);
-        if (data) {
+
+        // Same fingerprint check as products/settings: only trust the
+        // cached copy if it matches the current DEFAULT_COUPONS in code.
+        if (data && storedVersion === COUPONS_VERSION) {
             const parsed = JSON.parse(data);
             if (Array.isArray(parsed)) return parsed;
         }
@@ -361,6 +395,7 @@ function getDBCoupons() {
 function saveDBCoupons(coupons) {
     try {
         localStorage.setItem(STORAGE_KEYS.COUPONS, JSON.stringify(coupons));
+        localStorage.setItem(STORAGE_KEYS.COUPONS_VERSION, COUPONS_VERSION);
     } catch (e) {
         console.error("Error saving coupons db:", e);
     }
@@ -1031,7 +1066,7 @@ function initCheckoutPage() {
 
 // Helper: Sync delivery charges from Admin Settings
 function updateDeliveryRadiosFromSettings() {
-    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 120 };
+    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 150 };
     const radioCtg = document.querySelector('input[name="deliveryCharge"][value="100"], input[name="deliveryCharge"][data-area="ctg"]');
     const radioOut = document.querySelector('input[name="deliveryCharge"][value="150"], input[name="deliveryCharge"][data-area="out"]');
 
@@ -1112,7 +1147,7 @@ function calculateCheckoutTotals() {
     let subtotal = 0;
     cart.forEach(item => subtotal += (item.price * item.qty));
 
-    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 120 };
+    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 150 };
     const deliveryRadio = document.querySelector('input[name="deliveryCharge"]:checked');
     let deliveryCharge = deliveryRadio ? parseInt(deliveryRadio.value) : settings.deliveryChattogram;
     if (isNaN(deliveryCharge)) deliveryCharge = settings.deliveryChattogram;
@@ -1298,7 +1333,7 @@ function handleOrderSubmit(e) {
     const btnText = document.getElementById("btnText");
     if (btnText) btnText.innerText = "অর্ডার সম্পন্ন হচ্ছে...";
 
-    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 120, whatsappNumber: "8801818028094" };
+    const settings = typeof getDBSettings === "function" ? getDBSettings() : { deliveryChattogram: 70, deliveryOutside: 150, whatsappNumber: "8801818028094" };
     const deliveryRadio = document.querySelector('input[name="deliveryCharge"]:checked');
     const deliveryCharge = deliveryRadio ? parseInt(deliveryRadio.value) : settings.deliveryChattogram;
     const isCtg = deliveryRadio && (deliveryRadio.getAttribute("data-area") === "ctg" || parseInt(deliveryRadio.value) === settings.deliveryChattogram);
