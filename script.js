@@ -212,9 +212,9 @@ const DEFAULT_COUPONS = [
     },
     {
         id: "coupon-3",
-        code: "2nd10",
+        code: "2nd15",
         type: "percent",
-        value: 10,
+        value: 15,
         minOrder: 300,
         active: true
     }
