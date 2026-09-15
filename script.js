@@ -137,7 +137,7 @@ const DEFAULT_PRODUCTS_DATA = [
         active: true,
         inStock: false,
         packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
-    }
+    },
 
 
     // ===== নতুন অফার: Huahai Pack - 2 =====
