@@ -120,7 +120,7 @@ const DEFAULT_PRODUCTS_DATA = [
         featured: true,
         active: true,
         inStock: true,
-        packageInfo: "Rongrui KL-99 Survival Ration Biscuit— জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
+        packageInfo: "Rongrui KL-99 Survival Ration Biscuit— জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ ।"
     },
     {
         id: "ANA Survival Craft Ration- 1",
