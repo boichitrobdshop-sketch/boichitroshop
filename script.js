@@ -91,22 +91,6 @@ const DEFAULT_PRODUCTS_DATA = [
         packageInfo: "পরিমাণ: ৫০০ মি.লি., ৫ বছরের মেয়াদী বিশুদ্ধ জরুরি পানীয় জল, আন্তর্জাতিক SOLAS স্ট্যান্ডার্ড অনুমোদিত প্যাকেজড ওয়াটার।"
     },
     {
-        id: "Huahai emergency food rations - 1",
-        name: "Huahai Emergency Food Rations",
-        category: "Emergency Food",
-        price: 280,
-        oldPrice: null,
-        image: "image/Huahai emergency-1.png",
-        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০~৫৫০g)",
-        badge: "New",
-        type: "product",
-        productType: "regular",
-        featured: true,
-        active: true,
-        inStock: false,
-        packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
-    },
-    {
         id: "Rongrui KL-99 Survival Ration Biscuit - 1",
         name: "Rongrui KL-99 Survival Ration Biscuit",
         category: "Emergency Food",
@@ -137,7 +121,23 @@ const DEFAULT_PRODUCTS_DATA = [
         active: true,
         inStock: true,
         packageInfo: "ANA Survival Craft Ration হলো জরুরি পরিস্থিতির জন্য তৈরি একটি কমপ্যাক্ট ও দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। এটি baked wheat, fat ও sugars দিয়ে তৈরি compressed food, যা দুর্যোগ, সমুদ্রযাত্রা, ক্যাম্পিং, ট্রেকিং বা জরুরি অবস্থায় দ্রুত খাবারের প্রয়োজন মেটাতে ব্যবহার করা যায়।"
-    },
+    },    
+   {
+        id: "Huahai emergency food rations - 1",
+        name: "Huahai Emergency Food Rations",
+        category: "Emergency Food",
+        price: 280,
+        oldPrice: null,
+        image: "image/Huahai emergency-1.png",
+        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০~৫৫০g)",
+        badge: "New",
+        type: "product",
+        productType: "regular",
+        featured: true,
+        active: true,
+        inStock: false,
+        packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
+    }
 
 
     // ===== নতুন অফার: Huahai Pack - 2 =====
