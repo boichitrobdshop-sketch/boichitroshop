@@ -113,7 +113,7 @@ const DEFAULT_PRODUCTS_DATA = [
         price: 280,
         oldPrice: null,
         image: "image/Rongrui KL-99 Survival Ration Biscuit.jpeg",
-        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০~৫৫০g)",
+        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
         badge: "New",
         type: "product",
         productType: "regular",
