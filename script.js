@@ -103,8 +103,24 @@ const DEFAULT_PRODUCTS_DATA = [
         productType: "regular",
         featured: true,
         active: true,
-        inStock: true,
+        inStock: false,
         packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
+    },
+    {
+        id: "Rongrui KL-99 Survival Ration Biscuit - 1",
+        name: "Rongrui KL-99 Survival Ration Biscuit",
+        category: "Emergency Food",
+        price: 280,
+        oldPrice: null,
+        image: "image/Rongrui KL-99 Survival Ration Biscuit.jpeg",
+        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০~৫৫০g)",
+        badge: "New",
+        type: "product",
+        productType: "regular",
+        featured: true,
+        active: true,
+        inStock: true,
+        packageInfo: "Rongrui KL-99 Survival Ration Biscuit— জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
     },
     {
         id: "ANA Survival Craft Ration- 1",
@@ -127,22 +143,6 @@ const DEFAULT_PRODUCTS_DATA = [
     // ===== নতুন অফার: Huahai Pack - 2 =====
     // দুটি Huahai প্যাক একসাথে কিনলে মোট ৳500 (প্রতিটি ৳250)
     // oldPrice = 560 (2 × ৳280), price = 500 (সেভ ৳60)
-    {
-        id: "huahai-pack-2",
-        name: "Huahai Emergency Rations (Pack - 2)",
-        category: "Emergency Food",
-        price: 500,
-        oldPrice: 560,
-        image: "image/Huahai emergency-2.jpeg",
-        description: "২টি Huahai Ration একসাথে — সাশ্রয়ী কম্বো",
-        badge: "Best Value",
-        type: "offer",
-        productType: "offer",
-        featured: true,
-        active: true,
-        inStock: true,
-        packageInfo: "Huahai Emergency Life-Saving Food Rations (Pack - 2) — ২টি প্যাক একসাথে কিনলে প্রতিটি মাত্র ৳250! মোট ১,০০০~১,১০০ গ্রাম, ৩২ টি ব্লক। জরুরি পরিস্থিতিতে পরিবারের জন্য আদর্শ।"
-    },
     {
         id: "ANA Survival Craft Ration-2",
         name: "ANA Survival Craft Ration (Pack - 2)",
