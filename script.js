@@ -58,21 +58,46 @@
 
 // 1. DEFAULT DATASETS (Seeded on first launch)
 const DEFAULT_PRODUCTS_DATA = [
+
+    // ===== ভ্যারিয়েন্ট/ওজন প্রোডাক্টের উদাহরণ: চিংড়ি বালাচাও =====
+    // hasVariants: true থাকলে top-level price/inStock ব্যবহার হয় না,
+    // প্রতিটি variant-এর নিজস্ব price ও inStock ব্যবহৃত হয়। নতুন ওজন যোগ
+    // করতে variants array-তে নতুন object বসান, বাদ দিতে remove করুন।
     {
-        id: "seven-oceans-1",
-        name: "Seven Oceans Emergency Food",
-        category: "Emergency Food",
-        price: 500,
-        oldPrice: null,
-        image: "image/Seven Oceans.jpg",
-        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
-        badge: "Popular",
+        id: "balachao",
+        name: "চিংড়ি বালাচাও",
+        category: "Food",
+        image: "image/balachao.png",
+        description: "ঘরে তৈরি স্বাদের অথেন্টিক চিংড়ি বালাচাও",
+        badge: "New",
         type: "product",
         productType: "regular",
         featured: true,
         active: true,
-        inStock: false,
-        packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
+        hasVariants: true,
+        variants: [
+            { name: "125g", price: 240, inStock: true },
+            { name: "200g", price: 360, inStock: true },
+            { name: "300g", price: 540, inStock: true },
+            { name: "500g", price: 840, inStock: true }
+        ],
+        packageInfo: "সংরক্ষণ পদ্ধতি: ঠান্ডা ও শুকনো জায়গায় রাখুন। প্রিজারভেটিভ ছাড়া তৈরি, স্বাদে ও মানে সেরা।"
+    },
+    {
+        id: "ANA Survival Craft Ration- 1",
+        name: "ANA Survival Craft Ration",
+        category: "Emergency Food",
+        price: 280,
+        oldPrice: null,
+        image: "image/ANA Survival Craft Ration.jpeg",
+        description: "১টি সিঙ্গেল রেশন প্যাক (৫০০–৫৫০ গ্রাম)",
+        badge: "New",
+        type: "product",
+        productType: "regular",
+        featured: true,
+        active: true,
+        inStock: true,
+        packageInfo: "ANA Survival Craft Ration হলো জরুরি পরিস্থিতির জন্য তৈরি একটি কমপ্যাক্ট ও দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। এটি baked wheat, fat ও sugars দিয়ে তৈরি compressed food, যা দুর্যোগ, সমুদ্রযাত্রা, ক্যাম্পিং, ট্রেকিং বা জরুরি অবস্থায় দ্রুত খাবারের প্রয়োজন মেটাতে ব্যবহার করা যায়।"
     },
     {
         id: "seven-oceans-water-1",
@@ -106,23 +131,24 @@ const DEFAULT_PRODUCTS_DATA = [
         inStock: true,
         packageInfo: "Rongrui KL-99 Survival Ration Biscuit— জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ ।"
     },
+    
     {
-        id: "ANA Survival Craft Ration- 1",
-        name: "ANA Survival Craft Ration",
+        id: "seven-oceans-1",
+        name: "Seven Oceans Emergency Food",
         category: "Emergency Food",
-        price: 280,
+        price: 500,
         oldPrice: null,
-        image: "image/ANA Survival Craft Ration.jpeg",
-        description: "১টি সিঙ্গেল রেশন প্যাক (৫০০–৫৫০ গ্রাম)",
-        badge: "New",
+        image: "image/Seven Oceans.jpg",
+        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
+        badge: "Popular",
         type: "product",
         productType: "regular",
         featured: true,
         active: true,
-        inStock: true,
-        packageInfo: "ANA Survival Craft Ration হলো জরুরি পরিস্থিতির জন্য তৈরি একটি কমপ্যাক্ট ও দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। এটি baked wheat, fat ও sugars দিয়ে তৈরি compressed food, যা দুর্যোগ, সমুদ্রযাত্রা, ক্যাম্পিং, ট্রেকিং বা জরুরি অবস্থায় দ্রুত খাবারের প্রয়োজন মেটাতে ব্যবহার করা যায়।"
-    },    
-   {
+        inStock: false,
+        packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
+    },
+    {
         id: "Huahai emergency food rations - 1",
         name: "Huahai Emergency Food Rations",
         category: "Emergency Food",
@@ -143,6 +169,7 @@ const DEFAULT_PRODUCTS_DATA = [
     // ===== নতুন অফার: Huahai Pack - 2 =====
     // দুটি Huahai প্যাক একসাথে কিনলে মোট ৳500 (প্রতিটি ৳250)
     // oldPrice = 560 (2 × ৳280), price = 500 (সেভ ৳60)
+    
     {
         id: "ANA Survival Craft Ration-2",
         name: "ANA Survival Craft Ration (Pack - 2)",
@@ -175,6 +202,8 @@ const DEFAULT_PRODUCTS_DATA = [
         inStock: true,
         packageInfo: "৫ টি বিশুদ্ধ জরুরি সুপেয় ওয়াটার প্যাক (মোট ২,৫০০ ml)। ৫ বছর পর্যন্ত অক্ষত থাকে।"
     }
+
+
 ];
 
 /* =====================================================================
@@ -455,6 +484,65 @@ function getProductById(id) {
     return products.find(p => p.id === id) || null;
 }
 
+// ---------------------------------------------------------------------
+// VARIANT / WEIGHT SELECTION HELPERS
+// ---------------------------------------------------------------------
+// A product can optionally carry `hasVariants: true` + a `variants` array
+// (see চিংড়ি বালাচাও in DEFAULT_PRODUCTS_DATA for the exact shape). Every
+// place in the site that reads a product's price/stock/name goes through
+// these helpers so variant products and regular products both work with
+// the same cart/checkout code below, without touching any existing
+// regular-product behaviour.
+
+// Find one variant object on a product by its display name (e.g. "200g")
+function getProductVariantByName(product, variantName) {
+    if (!product || !product.hasVariants || !Array.isArray(product.variants)) return null;
+    return product.variants.find(v => v.name === variantName) || null;
+}
+
+// Lowest/highest variant price — used for card price ranges & sorting
+function getVariantPriceRange(product) {
+    if (!product || !Array.isArray(product.variants) || product.variants.length === 0) {
+        return { min: 0, max: 0 };
+    }
+    const prices = product.variants.map(v => Number(v.price) || 0);
+    return { min: Math.min(...prices), max: Math.max(...prices) };
+}
+
+// The price to use for sorting/display when a specific variant isn't
+// selected yet — cheapest variant for variant products, normal price otherwise
+function getEffectivePrice(product) {
+    if (!product) return 0;
+    if (product.hasVariants) return getVariantPriceRange(product).min;
+    return Number(product.price) || 0;
+}
+
+// A product is "fully" out of stock when either it's a regular product
+// with inStock:false, OR a variant product where every single variant is
+// out of stock (individual variants going out of stock is handled
+// separately, at the weight-selection level).
+function isProductFullyOutOfStock(product) {
+    if (!product) return true;
+    if (product.hasVariants) {
+        if (!Array.isArray(product.variants) || product.variants.length === 0) return true;
+        return product.variants.every(v => v.inStock === false);
+    }
+    return product.inStock === false;
+}
+
+// Cart-item-aware stock check: a cart line for a variant product must be
+// checked against that specific variant's stock, not the parent product's.
+function isCartItemOutOfStock(cartItem) {
+    const fresh = typeof getProductById === "function" ? getProductById(cartItem.id) : null;
+    if (!fresh) return true;
+    if (cartItem.variantName) {
+        const v = getProductVariantByName(fresh, cartItem.variantName);
+        return !v || v.inStock === false;
+    }
+    if (fresh.hasVariants) return true; // stale cart item missing its variant info
+    return fresh.inStock === false;
+}
+
 // Coupon Validator Helper
 function validateCouponCode(code, subtotal) {
     if (!code || !code.trim()) {
@@ -496,14 +584,25 @@ function validateCouponCode(code, subtotal) {
 
 // UI Card Generator for Catalog & Offer Grids
 function createProductCardHTML(item) {
-    const outOfStock = item.inStock === false;
+    const outOfStock = isProductFullyOutOfStock(item);
     let oldPriceHTML = '';
     let discountBadgeHTML = '';
+    let priceBoxInnerHTML = '';
 
-    if (item.oldPrice && item.oldPrice > item.price) {
-        const savings = item.oldPrice - item.price;
-        oldPriceHTML = `<span class="old-price">${formatCurrency(item.oldPrice)}</span>`;
-        discountBadgeHTML = `<span class="save-badge">Save ${formatCurrency(savings)}</span>`;
+    if (item.hasVariants) {
+        // Variant products show a price range (or a single value if every
+        // variant happens to share the same price) instead of one fixed price.
+        const range = getVariantPriceRange(item);
+        priceBoxInnerHTML = range.min === range.max
+            ? `<span class="price">${formatCurrency(range.min)}</span>`
+            : `<span class="price">${formatCurrency(range.min)} - ${formatCurrency(range.max)}</span>`;
+    } else {
+        if (item.oldPrice && item.oldPrice > item.price) {
+            const savings = item.oldPrice - item.price;
+            oldPriceHTML = `<span class="old-price">${formatCurrency(item.oldPrice)}</span>`;
+            discountBadgeHTML = `<span class="save-badge">Save ${formatCurrency(savings)}</span>`;
+        }
+        priceBoxInnerHTML = `<span class="price">${formatCurrency(item.price)}</span>`;
     }
 
     let badgeClass = 'card-badge';
@@ -517,13 +616,23 @@ function createProductCardHTML(item) {
         badgeHTML = `<span class="${badgeClass}">${item.badge}</span>`;
     }
 
-    const cardActionsHTML = outOfStock
-        ? `<div class="card-actions">
+    let cardActionsHTML;
+    if (outOfStock) {
+        cardActionsHTML = `<div class="card-actions">
                 <button type="button" class="btn-add-cart" disabled aria-disabled="true">
                     <i class="fa-solid fa-ban"></i> স্টক আউট
                 </button>
-           </div>`
-        : `<div class="card-actions">
+           </div>`;
+    } else if (item.hasVariants) {
+        // Weight/price depends on a variant the customer hasn't picked yet
+        // on this grid card, so send them to the details page to choose it.
+        cardActionsHTML = `<div class="card-actions">
+                <button type="button" class="btn-buy-now" style="width:100%;" onclick="goToProductDetails('${item.id}')">
+                    <i class="fa-solid fa-weight-hanging"></i> ওজন সিলেক্ট করুন
+                </button>
+           </div>`;
+    } else {
+        cardActionsHTML = `<div class="card-actions">
                 <button type="button" class="btn-add-cart" onclick="handleAddToCart('${item.id}')">
                     <i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন
                 </button>
@@ -531,6 +640,7 @@ function createProductCardHTML(item) {
                     অর্ডার করুন
                 </button>
            </div>`;
+    }
 
     return `
         <div class="product-card${outOfStock ? ' out-of-stock' : ''}" data-id="${item.id}">
@@ -542,7 +652,7 @@ function createProductCardHTML(item) {
                 <h3 onclick="goToProductDetails('${item.id}')">${item.name}</h3>
                 <p class="desc">${item.description}</p>
                 <div class="price-box">
-                    <span class="price">${formatCurrency(item.price)}</span>
+                    ${priceBoxInnerHTML}
                     ${oldPriceHTML}
                     ${discountBadgeHTML}
                 </div>
@@ -623,9 +733,9 @@ function renderProductsPage(categoryFilter = "all", searchQuery = "", sortBy = "
     }
 
     if (sortBy === "low-high") {
-        list.sort((a, b) => a.price - b.price);
+        list.sort((a, b) => getEffectivePrice(a) - getEffectivePrice(b));
     } else if (sortBy === "high-low") {
-        list.sort((a, b) => b.price - a.price);
+        list.sort((a, b) => getEffectivePrice(b) - getEffectivePrice(a));
     }
 
     if (list.length === 0) {
@@ -665,6 +775,13 @@ function renderOffersPage(searchQuery = "") {
 }
 
 // 8. RENDERING SINGLE PRODUCT DETAILS PAGE
+
+// Tracks which weight/variant the customer has picked on the currently
+// viewed product details page. Resets automatically whenever the page
+// is loaded for a different product id (see below).
+let selectedProductVariant = null;
+let _lastVariantProductId = null;
+
 function renderSingleProductDetailsPage() {
     const wrapper = document.getElementById("productDetailsWrapper");
     if (!wrapper) return;
@@ -676,22 +793,77 @@ function renderSingleProductDetailsPage() {
 
     if (!item) return;
 
+    // Reset the selected weight whenever we land on a different product
+    // (but keep it when re-rendering because the customer just picked one).
+    if (item.id !== _lastVariantProductId) {
+        selectedProductVariant = null;
+        _lastVariantProductId = item.id;
+    }
+
     document.title = `${item.name} | Boichitro Shop BD`;
 
-    const outOfStock = item.inStock === false;
+    const hasVariants = !!item.hasVariants && Array.isArray(item.variants) && item.variants.length > 0;
+    const outOfStock = isProductFullyOutOfStock(item);
+    const currentVariant = hasVariants ? getProductVariantByName(item, selectedProductVariant) : null;
 
     let oldPriceHTML = '';
-    if (item.oldPrice && item.oldPrice > item.price) {
-        const savings = item.oldPrice - item.price;
-        oldPriceHTML = `
-            <span class="old-price" style="font-size: 18px;">${formatCurrency(item.oldPrice)}</span>
-            <span class="save-badge">Save ${formatCurrency(savings)}</span>
-        `;
+    let priceValueHTML = '';
+
+    if (hasVariants) {
+        if (currentVariant) {
+            priceValueHTML = `<span class="price" style="font-size: 28px;">${formatCurrency(currentVariant.price)}</span>`;
+        } else {
+            const range = getVariantPriceRange(item);
+            priceValueHTML = range.min === range.max
+                ? `<span class="price" style="font-size: 28px;">${formatCurrency(range.min)}</span>`
+                : `<span class="price" style="font-size: 28px;">${formatCurrency(range.min)} - ${formatCurrency(range.max)}</span>`;
+        }
+    } else {
+        if (item.oldPrice && item.oldPrice > item.price) {
+            const savings = item.oldPrice - item.price;
+            oldPriceHTML = `
+                <span class="old-price" style="font-size: 18px;">${formatCurrency(item.oldPrice)}</span>
+                <span class="save-badge">Save ${formatCurrency(savings)}</span>
+            `;
+        }
+        priceValueHTML = `<span class="price" style="font-size: 28px;">${formatCurrency(item.price)}</span>`;
     }
 
     const stockBadgeHTML = outOfStock
         ? `<span class="badge badge-outofstock" style="margin-left:8px;">স্টক আউট</span>`
         : '';
+
+    // "Select Weight" chip row — only rendered for products with hasVariants: true.
+    // Uses the site's existing .filter-btn / .active pill styling (already used
+    // for the category filters on the Products page) so it matches the current
+    // design without needing any new CSS.
+    let weightSelectHTML = '';
+    if (hasVariants && !outOfStock) {
+        const chipsHTML = item.variants.map(v => {
+            const isSelected = selectedProductVariant === v.name;
+            const isVariantOOS = v.inStock === false;
+            return `<button type="button"
+                        class="filter-btn${isSelected ? ' active' : ''}"
+                        ${isVariantOOS ? 'disabled aria-disabled="true"' : ''}
+                        style="${isVariantOOS ? 'opacity:0.45;cursor:not-allowed;text-decoration:line-through;' : ''}"
+                        onclick="selectProductVariant('${v.name}')">
+                        ${v.name}${isVariantOOS ? ' (স্টক আউট)' : ''}
+                    </button>`;
+        }).join('');
+
+        weightSelectHTML = `
+            <div class="form-group weight-select-box">
+                <label>ওজন সিলেক্ট করুন: <span style="color:#ef4444;">*</span></label>
+                <div class="quantity-control" style="width:auto; max-width:100%; height:auto; padding:6px 0; border:none; background:transparent; flex-wrap:wrap; justify-content:flex-start; gap:8px;">
+                    ${chipsHTML}
+                </div>
+                ${!selectedProductVariant ? '<p style="color:#ef4444; font-size:13px; margin-top:6px;">কার্টে যোগ করার আগে একটি ওজন সিলেক্ট করুন।</p>' : ''}
+            </div>`;
+    }
+
+    // Add to Cart / Buy Now must stay disabled until a weight is chosen
+    // (for variant products) — this is on top of the normal out-of-stock lock.
+    const canOrder = !outOfStock && (!hasVariants || (currentVariant && currentVariant.inStock !== false));
 
     const detailActionsHTML = outOfStock
         ? `<div class="detail-actions">
@@ -699,7 +871,9 @@ function renderSingleProductDetailsPage() {
                     <i class="fa-solid fa-ban"></i> স্টক আউট — এই মুহূর্তে অনুপলব্ধ
                 </button>
            </div>`
-        : `<div class="quantity-selector-box form-group">
+        : `${weightSelectHTML}
+
+           <div class="quantity-selector-box form-group">
                 <label>পরিমাণ:</label>
                 <div class="quantity-control">
                     <button type="button" class="qty-btn" onclick="adjustDetailQty(-1)">-</button>
@@ -709,10 +883,10 @@ function renderSingleProductDetailsPage() {
            </div>
 
            <div class="detail-actions">
-                <button type="button" class="btn btn-secondary btn-lg" onclick="addDetailToCart('${item.id}')">
+                <button type="button" class="btn btn-secondary btn-lg" onclick="addDetailToCart('${item.id}')" ${canOrder ? '' : 'disabled aria-disabled="true"'}>
                     <i class="fa-solid fa-cart-plus"></i> কার্টে রাখুন
                 </button>
-                <button type="button" class="btn btn-primary btn-lg" onclick="buyDetailNow('${item.id}')">
+                <button type="button" class="btn btn-primary btn-lg" onclick="buyDetailNow('${item.id}')" ${canOrder ? '' : 'disabled aria-disabled="true"'}>
                     এখনই অর্ডার করুন
                 </button>
            </div>`;
@@ -728,7 +902,7 @@ function renderSingleProductDetailsPage() {
                 <p class="desc">${item.description}</p>
                 
                 <div class="price-box">
-                    <span class="price" style="font-size: 28px;">${formatCurrency(item.price)}</span>
+                    ${priceValueHTML}
                     ${oldPriceHTML}
                 </div>
 
@@ -741,6 +915,14 @@ function renderSingleProductDetailsPage() {
             </div>
         </div>
     `;
+}
+
+// Called when the customer taps a weight chip on the product details page.
+// Re-renders the details page so price, cart/buy buttons, and the chip
+// group's selected state all update together.
+function selectProductVariant(variantName) {
+    selectedProductVariant = variantName;
+    renderSingleProductDetailsPage();
 }
 
 function adjustDetailQty(delta) {
@@ -853,7 +1035,16 @@ function loadCart() {
             if (typeof getProductById === "function") {
                 cart.forEach(item => {
                     const fresh = getProductById(item.id);
-                    if (fresh) {
+                    if (!fresh) return;
+                    if (item.variantName && fresh.hasVariants) {
+                        // Variant line — re-sync against that specific variant's price
+                        const v = getProductVariantByName(fresh, item.variantName);
+                        if (v) {
+                            item.price = v.price;
+                            item.name = `${fresh.name} - ${v.name}`;
+                            item.img = fresh.image;
+                        }
+                    } else if (!fresh.hasVariants) {
                         item.price = fresh.price;
                         item.name = fresh.name;
                         item.img = fresh.image;
@@ -899,49 +1090,92 @@ function closeCartDrawer() {
 }
 
 // 3. CART OPERATIONS
-function handleAddToCart(id, qty = 1) {
+//
+// `variantName` is only relevant for products with hasVariants: true. For
+// those products a weight MUST be resolved (either passed in, e.g. from the
+// product details page, or already implied — regular products just pass null).
+function _resolveCartLine(id, variantName) {
     const prod = typeof getProductById === "function" ? getProductById(id) : PRODUCTS_DATA.find(p => p.id === id);
-    if (!prod) return;
-    if (prod.inStock === false) {
+    if (!prod) return { error: "notfound" };
+
+    if (prod.hasVariants) {
+        if (!variantName) {
+            return { error: "novariant", prod };
+        }
+        const variant = getProductVariantByName(prod, variantName);
+        if (!variant) return { error: "notfound" };
+        if (variant.inStock === false) return { error: "oos", prod, variant };
+        return {
+            prod,
+            variant,
+            name: `${prod.name} - ${variant.name}`,
+            price: variant.price
+        };
+    }
+
+    if (prod.inStock === false) return { error: "oos", prod };
+    return { prod, variant: null, name: prod.name, price: prod.price };
+}
+
+function handleAddToCart(id, qty = 1, variantName = null) {
+    const resolved = _resolveCartLine(id, variantName);
+    if (resolved.error === "notfound") return;
+    if (resolved.error === "novariant") {
         if (typeof showToast === "function") {
-            showToast(`❌ "${prod.name}" বর্তমানে স্টক আউট।`, "error");
+            showToast("⚠️ অনুগ্রহ করে প্রথমে ওজন সিলেক্ট করুন।", "warning");
+        }
+        return;
+    }
+    if (resolved.error === "oos") {
+        const label = resolved.variant ? `${resolved.prod.name} - ${resolved.variant.name}` : resolved.prod.name;
+        if (typeof showToast === "function") {
+            showToast(`❌ "${label}" বর্তমানে স্টক আউট।`, "error");
         }
         return;
     }
 
-    const existing = cart.find(item => item.id === id);
+    const { prod, variant, name, price } = resolved;
+    const existing = cart.find(item => item.id === id && (item.variantName || null) === (variant ? variant.name : null));
     if (existing) {
         existing.qty += qty;
-        existing.price = prod.price; // update to fresh price
+        existing.price = price; // update to fresh price
     } else {
-        cart.push({ id: prod.id, name: prod.name, price: prod.price, qty: qty, img: prod.image });
+        cart.push({ id: prod.id, variantName: variant ? variant.name : null, name: name, price: price, qty: qty, img: prod.image });
     }
 
     saveCart();
     updateCartUI();
     openCartDrawer();
     if (typeof showToast === "function") {
-        showToast(`✓ "${prod.name}" কার্টে যোগ হয়েছে`, "success");
+        showToast(`✓ "${name}" কার্টে যোগ হয়েছে`, "success");
     }
 }
 
-function handleBuyNow(id, qty = 1) {
-    const prod = typeof getProductById === "function" ? getProductById(id) : PRODUCTS_DATA.find(p => p.id === id);
-    if (!prod) return;
-    if (prod.inStock === false) {
+function handleBuyNow(id, qty = 1, variantName = null) {
+    const resolved = _resolveCartLine(id, variantName);
+    if (resolved.error === "notfound") return;
+    if (resolved.error === "novariant") {
         if (typeof showToast === "function") {
-            showToast(`❌ "${prod.name}" বর্তমানে স্টক আউট।`, "error");
+            showToast("⚠️ অনুগ্রহ করে প্রথমে ওজন সিলেক্ট করুন।", "warning");
+        }
+        return;
+    }
+    if (resolved.error === "oos") {
+        const label = resolved.variant ? `${resolved.prod.name} - ${resolved.variant.name}` : resolved.prod.name;
+        if (typeof showToast === "function") {
+            showToast(`❌ "${label}" বর্তমানে স্টক আউট।`, "error");
         }
         return;
     }
 
+    const { prod, variant, name, price } = resolved;
     // Preserves existing cart items and appends/increments requested item
-    const existing = cart.find(item => item.id === id);
+    const existing = cart.find(item => item.id === id && (item.variantName || null) === (variant ? variant.name : null));
     if (existing) {
         existing.qty += qty;
-        existing.price = prod.price; // update to fresh price
+        existing.price = price; // update to fresh price
     } else {
-        cart.push({ id: prod.id, name: prod.name, price: prod.price, qty: qty, img: prod.image });
+        cart.push({ id: prod.id, variantName: variant ? variant.name : null, name: name, price: price, qty: qty, img: prod.image });
     }
 
     saveCart();
@@ -950,15 +1184,29 @@ function handleBuyNow(id, qty = 1) {
 }
 
 function addDetailToCart(id) {
+    const prod = typeof getProductById === "function" ? getProductById(id) : null;
+    if (prod && prod.hasVariants && !selectedProductVariant) {
+        if (typeof showToast === "function") {
+            showToast("⚠️ অনুগ্রহ করে প্রথমে ওজন সিলেক্ট করুন।", "warning");
+        }
+        return;
+    }
     const qtyInput = document.getElementById("detailQty");
     const qty = qtyInput ? parseInt(qtyInput.value) : 1;
-    handleAddToCart(id, qty);
+    handleAddToCart(id, qty, prod && prod.hasVariants ? selectedProductVariant : null);
 }
 
 function buyDetailNow(id) {
+    const prod = typeof getProductById === "function" ? getProductById(id) : null;
+    if (prod && prod.hasVariants && !selectedProductVariant) {
+        if (typeof showToast === "function") {
+            showToast("⚠️ অনুগ্রহ করে প্রথমে ওজন সিলেক্ট করুন।", "warning");
+        }
+        return;
+    }
     const qtyInput = document.getElementById("detailQty");
     const qty = qtyInput ? parseInt(qtyInput.value) : 1;
-    handleBuyNow(id, qty);
+    handleBuyNow(id, qty, prod && prod.hasVariants ? selectedProductVariant : null);
 }
 
 function removeFromCart(index) {
@@ -1015,8 +1263,7 @@ function updateCartUI() {
                 </div>`;
         } else {
             cartContainer.innerHTML = cart.map((item, index) => {
-                const fresh = typeof getProductById === "function" ? getProductById(item.id) : null;
-                const isOOS = !fresh || fresh.inStock === false;
+                const isOOS = typeof isCartItemOutOfStock === "function" ? isCartItemOutOfStock(item) : false;
                 return `
                 <div class="cart-item">
                     <img src="${item.img}" alt="${item.name}" class="cart-item-img" loading="lazy" decoding="async" onerror="this.src='image/Seven Oceans.jpg'">
@@ -1112,8 +1359,7 @@ function renderCheckoutReview() {
         if (checkoutForm) checkoutForm.style.display = "block";
 
         checkoutItemsList.innerHTML = cart.map((item, index) => {
-            const fresh = typeof getProductById === "function" ? getProductById(item.id) : null;
-            const isOOS = !fresh || fresh.inStock === false;
+            const isOOS = typeof isCartItemOutOfStock === "function" ? isCartItemOutOfStock(item) : false;
             return `
             <div class="checkout-item-card">
                 <div class="checkout-top-row">
@@ -1259,8 +1505,7 @@ function handleOrderSubmit(e) {
 
     // Block order if any cart item has since gone out of stock
     const outOfStockItem = cart.find(item => {
-        const fresh = typeof getProductById === "function" ? getProductById(item.id) : null;
-        return !fresh || fresh.inStock === false;
+        return typeof isCartItemOutOfStock === "function" ? isCartItemOutOfStock(item) : false;
     });
     if (outOfStockItem) {
         if (typeof showToast === "function") {
