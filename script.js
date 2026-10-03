@@ -1135,6 +1135,10 @@ function handleAddToCart(id, qty = 1, variantName = null) {
     }
 
     const { prod, variant, name, price } = resolved;
+
+    // কার্ট আগে খালি ছিল কিনা (প্রথম পণ্য কিনা) — popup শুধু তখনই খুলবে
+    const wasCartEmpty = cart.length === 0;
+
     const existing = cart.find(item => item.id === id && (item.variantName || null) === (variant ? variant.name : null));
     if (existing) {
         existing.qty += qty;
@@ -1145,7 +1149,9 @@ function handleAddToCart(id, qty = 1, variantName = null) {
 
     saveCart();
     updateCartUI();
-    openCartDrawer();
+    if (wasCartEmpty) {
+        openCartDrawer();
+    }
     if (typeof showToast === "function") {
         showToast(`✓ "${name}" কার্টে যোগ হয়েছে`, "success");
     }
@@ -1492,6 +1498,43 @@ function setupCheckoutEvents() {
     }
 }
 
+// ===== টেলিগ্রাম বট সেটিং (এখানে আপনার তথ্য বসান) =====
+const TELEGRAM_BOT_TOKEN = "8790102929:AAFY6OikWZbk6RitgWPjMJF0O6PeaVzmd-c";   // ← BotFather থেকে পাওয়া Bot Token
+const TELEGRAM_CHAT_ID   = "-1004389287583";     // ← আপনার Chat ID (গ্রুপ হলে -100... দিয়ে শুরু)
+
+// ===== WhatsApp অন/অফ সুইচ =====
+// false = WhatsApp বন্ধ (অর্ডারে WhatsApp খুলবে না)
+// true  = আবার চালু করতে চাইলে true করুন
+const ENABLE_WHATSAPP = true;
+
+// HTML special character escape (Telegram HTML mode-এর জন্য)
+function tgEscape(str) {
+    return String(str == null ? "" : str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+// টেলিগ্রামে মেসেজ পাঠানোর ফাংশন
+function sendTelegramOrder(htmlMessage) {
+    if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE" ||
+        !TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID === "YOUR_CHAT_ID_HERE") {
+        console.warn("Telegram Bot Token / Chat ID এখনো বসানো হয়নি।");
+        return;
+    }
+    const params = new URLSearchParams();
+    params.append("chat_id", TELEGRAM_CHAT_ID);
+    params.append("text", htmlMessage);
+    params.append("parse_mode", "HTML");
+
+    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString()
+    }).catch(err => console.error("Telegram send error:", err));
+}
+
 // 5. ORDER SUBMISSION, DB ORDERS, GOOGLE SHEET INTEGRATION & WHATSAPP REDIRECT
 function handleOrderSubmit(e) {
     e.preventDefault();
@@ -1675,6 +1718,27 @@ function handleOrderSubmit(e) {
         })
     }).catch(err => console.error("Google Sheet webhook log:", err));
 
+    // 2.1 Send order to Telegram Bot
+    let tgItems = "";
+    orderedItems.forEach((item, idx) => {
+        tgItems += `${idx + 1}. <b>${tgEscape(item.name)}</b> — ${item.qty} টি — ৳${item.price * item.qty}\n`;
+    });
+    const tgMessage =
+        `🛍️ <b>নতুন অর্ডার - Boichitro Shop BD</b>\n` +
+        `🆔 <b>অর্ডার আইডি:</b> #${tgEscape(orderId)}\n` +
+        `🕒 <b>সময়:</b> ${tgEscape(formattedDate)} (${tgEscape(formattedTime)})\n\n` +
+        `📦 <b>অর্ডারকৃত পণ্যসমূহ:</b>\n${tgItems}\n` +
+        `💵 <b>সাবটোটাল:</b> ৳${subtotal}\n` +
+        (appliedCoupon ? `🎟️ <b>কুপন (${tgEscape(appliedCoupon.code)}):</b> -৳${discount}\n` : "") +
+        `🚚 <b>ডেলিভারি চার্জ:</b> ৳${deliveryCharge} (${tgEscape(deliveryArea)})\n` +
+        `💰 <b>সর্বমোট বিল:</b> ৳${grandTotal}\n\n` +
+        `👤 <b>কাস্টমার নাম:</b> ${tgEscape(name)}\n` +
+        `📞 <b>মোবাইল নম্বর:</b> ${tgEscape(phone)}\n` +
+        (email ? `📧 <b>ইমেইল:</b> ${tgEscape(email)}\n` : "") +
+        `📍 <b>ঠিকানা:</b> ${tgEscape(address)}\n` +
+        `🏙️ <b>জেলা:</b> ${tgEscape(district)}`;
+    sendTelegramOrder(tgMessage);
+
     // 3. Construct detailed WhatsApp message using configured WhatsApp number
     let waMessage = 
         `🛍️ *নতুন অর্ডার - Boichitro Shop BD*\n` +
@@ -1717,7 +1781,11 @@ function handleOrderSubmit(e) {
     if (succItemsList) succItemsList.innerHTML = itemsReceiptHTML;
 
     if (succWhatsappBtn) {
-        succWhatsappBtn.href = waURL;
+        if (ENABLE_WHATSAPP) {
+            succWhatsappBtn.href = waURL;
+        } else {
+            succWhatsappBtn.style.display = "none";
+        }
     }
 
     // Set order placed flag so emptying cart won't toggle empty state
@@ -1744,12 +1812,14 @@ function handleOrderSubmit(e) {
         showToast("✓ আপনার অর্ডারটি সফলভাবে গৃহীত হয়েছে!", "success");
     }
 
-    // Open WhatsApp in a new tab
-    try {
-        window.open(waURL, "_blank");
-    } catch (e) {
-        console.warn("Popup blocked or direct open failed:", e);
-    }
+    // Open WhatsApp in a new tab (শুধু ENABLE_WHATSAPP = true হলে)
+    // if (ENABLE_WHATSAPP) {
+    //     try {
+    //         window.open(waURL, "_blank");
+    //     } catch (e) {
+    //         console.warn("Popup blocked or direct open failed:", e);
+    //     }
+    // }
 }
 
 /* ==========================================================================
