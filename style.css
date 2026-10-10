@@ -1783,13 +1783,13 @@ section {
 }
 
 @media (max-width: 768px) {
-    body { padding-bottom: 70px; }
+    body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
     
     .container { padding: 0 14px; }
     
     .header-container {
         flex-wrap: wrap;
-        padding: 10px 14px;
+        padding: 8px 14px 14px;
         gap: 8px;
     }
     
@@ -1798,7 +1798,7 @@ section {
     .search-box {
         order: 3;
         flex: 1 1 100%;
-        margin-top: 4px;
+        margin-top: 0;
     }
     .search-box input {
         padding: 9px 16px 9px 36px;
@@ -1871,13 +1871,14 @@ section {
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 60px;
+        /* 60px bar + safe area: the inset is added to the height instead of squeezing the content area */
+        height: calc(60px + env(safe-area-inset-bottom, 0px));
         background: var(--card-bg);
         box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
         z-index: 9000;
         justify-content: space-around;
-        align-items: center;
-        padding: 4px 2px max(4px, env(safe-area-inset-bottom));
+        align-items: flex-start;
+        padding: 0 2px env(safe-area-inset-bottom, 0px);
         border-top: 1px solid var(--border-color);
     }
     
@@ -1891,10 +1892,13 @@ section {
         font-size: 11px;
         font-weight: 600;
         position: relative;
-        flex: 1;
-        height: 100%;
+        flex: 1 1 0;
+        min-width: 0;
+        height: 59px; /* 60px bar minus 1px top border */
         min-height: 44px;
         padding: 2px 0;
+        line-height: 1.2;
+        font-family: inherit;
         transition: var(--transition);
         background: none;
         border: none;
@@ -1908,7 +1912,7 @@ section {
     
     /* WHATSAPP FLOAT ON MOBILE */
     .whatsapp-float {
-        bottom: 72px;
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px));
         left: 12px;
         width: 46px;
         height: 46px;
@@ -1972,14 +1976,18 @@ section {
     }
     
     /* HERO SECTION ON MOBILE */
-    .hero-section { padding: 30px 0; }
-    .hero-text h1 { font-size: 28px; line-height: 1.25; }
-    .hero-text p { font-size: 14px; }
-    .hero-btns { flex-direction: column; gap: 10px; }
-    .hero-btns .btn { width: 100%; min-height: 46px; }
-    .hero-features { justify-content: center; gap: 10px 14px; font-size: 12.5px; }
-    .hero-slider-box { padding: 16px; }
-    .slider-wrapper img { height: 200px; }
+    .hero-section { padding: 14px 0 16px; }
+    .hero-container { gap: 14px; }
+    .hero-text h1 { font-size: 28px; line-height: 1.2; margin: 6px 0 6px; }
+    .hero-text p { font-size: 14px; line-height: 1.55; max-width: 100%; margin: 0 auto; overflow-wrap: anywhere; }
+    .hero-btns { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 8px; margin: 12px 0 10px; }
+    .hero-btns .btn { flex: 1 1 0; width: auto; min-width: 0; min-height: 44px; padding: 10px 8px; font-size: 13.5px; gap: 6px; white-space: nowrap; }
+    .hero-features { justify-content: center; gap: 6px 12px; font-size: 12.5px; }
+    .hero-slider-box { padding: 10px; }
+    .slider-wrapper img { height: 170px; max-width: 100%; object-fit: contain; }
+    .product-tag { top: 10px; left: 10px; }
+    .products-section { padding: 28px 0; }
+    .section-title { margin-bottom: 16px; }
     
     /* SINGLE PRODUCT PAGE */
     .single-product-main { padding: 20px 14px 80px; }
@@ -1994,7 +2002,7 @@ section {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-    .product-card { padding: 10px; }
+    .product-card { padding: 10px; min-width: 0; }
     .product-img {
         height: auto;
         aspect-ratio: 1 / 1;
@@ -2036,13 +2044,16 @@ section {
     }
     
     /* FOOTER */
-    .footer { padding: 36px 0 16px; margin-top: 40px; }
+    .footer { padding: 28px 0 14px; margin-top: 32px; }
 }
 
 @media (max-width: 480px) {
     .container { padding: 0 12px; }
+    /* .container's shorthand padding (above) would otherwise wipe the header's vertical padding */
+    .header-container { padding: 8px 12px 14px; }
     .logo a { font-size: 18px; }
     .hero-text h1 { font-size: 26px; }
+    .hero-btns .btn { font-size: 13px; padding: 10px 6px; }
     .section-title h2 { font-size: 24px; }
     .page-banner h1 { font-size: 24px; }
     .page-banner { padding: 30px 0; }
