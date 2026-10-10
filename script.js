@@ -83,6 +83,22 @@ const DEFAULT_PRODUCTS_DATA = [
         ],
         packageInfo: "সংরক্ষণ পদ্ধতি: ঠান্ডা ও শুকনো জায়গায় রাখুন। প্রিজারভেটিভ ছাড়া তৈরি, স্বাদে ও মানে সেরা।"
     },
+   {
+        id: "seven-oceans-1",
+        name: "Seven Oceans Emergency Food",
+        category: "Emergency Food",
+        price: 600,
+        oldPrice: null,
+        image: "image/Seven Oceans.jpg",
+        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
+        badge: "Popular",
+        type: "product",
+        productType: "regular",
+        featured: true,
+        active: true,
+        inStock: true,
+        packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
+    },
     {
         id: "ANA Survival Craft Ration- 1",
         name: "ANA Survival Craft Ration",
@@ -130,23 +146,6 @@ const DEFAULT_PRODUCTS_DATA = [
         active: true,
         inStock: true,
         packageInfo: "Rongrui KL-99 Survival Ration Biscuit— জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ ।"
-    },
-    
-    {
-        id: "seven-oceans-1",
-        name: "Seven Oceans Emergency Food",
-        category: "Emergency Food",
-        price: 500,
-        oldPrice: null,
-        image: "image/Seven Oceans.jpg",
-        description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
-        badge: "Popular",
-        type: "product",
-        productType: "regular",
-        featured: true,
-        active: true,
-        inStock: false,
-        packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
     },
     {
         id: "Huahai emergency food rations - 1",
