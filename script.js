@@ -94,7 +94,7 @@ const DEFAULT_PRODUCTS_DATA = [
         badge: "Popular",
         type: "product",
         productType: "regular",
-        featured: false,
+        featured: true,
         active: true,
         inStock: true,
         packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
@@ -126,7 +126,7 @@ const DEFAULT_PRODUCTS_DATA = [
         badge: "Popular",
         type: "product",
         productType: "regular",
-        featured: true,
+        featured: false,
         active: true,
         inStock: true,
         packageInfo: "পরিমাণ: ৫০০ মি.লি., ৫ বছরের মেয়াদী বিশুদ্ধ জরুরি পানীয় জল, আন্তর্জাতিক SOLAS স্ট্যান্ডার্ড অনুমোদিত প্যাকেজড ওয়াটার।"
@@ -158,7 +158,7 @@ const DEFAULT_PRODUCTS_DATA = [
         badge: "New",
         type: "product",
         productType: "regular",
-        featured: true,
+        featured: false,
         active: true,
         inStock: false,
         packageInfo: "Huahai Emergency Life-Saving Food Rations — জরুরি পরিস্থিতির জন্য দীর্ঘমেয়াদি সংরক্ষণযোগ্য খাবার। সহজে বহনযোগ্য এবং প্রয়োজনের সময় ব্যবহারের উপযোগী। এই প্যাকটির নিট ওজন ৫০০ থেকে ৫৫০ গ্রাম (৫০০~৫৫০g) এবং এতে মোট ১৬টি ব্লক বা টুকরা রয়েছে।"
