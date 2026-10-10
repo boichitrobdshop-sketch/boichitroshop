@@ -94,7 +94,7 @@ const DEFAULT_PRODUCTS_DATA = [
         badge: "Popular",
         type: "product",
         productType: "regular",
-        featured: true,
+        featured: false,
         active: true,
         inStock: true,
         packageInfo: "ওজন: ৫০০ গ্রাম, ক্যালরি: ১০,৩০০ kJ / ২,৪০০ kcal, প্রিজারভেটিভ বিহীন, নরওয়েতে তৈরি। জরুরি দুর্যোগ ও দীর্ঘমেয়াদী মজুদের জন্য আদর্শ।"
