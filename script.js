@@ -85,7 +85,7 @@ const DEFAULT_PRODUCTS_DATA = [
     },
    {
         id: "seven-oceans-1",
-        name: "Seven Oceans Emergency Food",
+        name: "Seven Oceans",
         category: "Emergency Food",
         price: 600,
         oldPrice: null,
