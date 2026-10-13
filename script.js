@@ -133,7 +133,7 @@ const DEFAULT_PRODUCTS_DATA = [
     },
     {
         id: "Rongrui KL-99 Survival Ration Biscuit - 1",
-        name: "Rongrui KL-99 Survival Ration Biscuit",
+        name: "KL-99 Survival Ration",
         category: "Emergency Food",
         price: 280,
         oldPrice: null,
