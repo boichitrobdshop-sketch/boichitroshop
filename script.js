@@ -87,7 +87,7 @@ const DEFAULT_PRODUCTS_DATA = [
         id: "seven-oceans-1",
         name: "Seven Oceans",
         category: "Emergency Food",
-        price: 600,
+        price: 650,
         oldPrice: null,
         image: "image/Seven Oceans.jpg",
         description: "১ টি সিঙ্গেল রেশন প্যাক (৫০০ গ্রাম)",
