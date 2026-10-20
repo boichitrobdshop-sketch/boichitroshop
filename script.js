@@ -2179,3 +2179,102 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initCheckoutPage === "function") initCheckoutPage();
     if (typeof updateCartUI === "function") updateCartUI();
 });
+
+
+
+
+
+/* =====================================================================
+   ⏳ ৭ দিনের অফার টাইমার — script.js-এর শেষে বসান
+   OFFER_START_DATE বদলালেই নতুন করে ৭ দিন শুরু হবে
+   ===================================================================== */
+(function () {
+    const OFFER_START_DATE = "2026-10-20T00:00:00+06:00"; // ← শুরুর তারিখ (বাংলাদেশ সময়)
+    const OFFER_DURATION_DAYS = 7;                        // ← কত দিন চলবে
+    const END_TIME = new Date(OFFER_START_DATE).getTime() + OFFER_DURATION_DAYS * 86400000;
+
+    const expired = () => Date.now() >= END_TIME;
+
+    // সময় শেষ হলে সব অফার (type: "offer") সাইট থেকে লুকিয়ে যাবে
+    const _origGetDBProducts = getDBProducts;
+    getDBProducts = function () {
+        const list = _origGetDBProducts();
+        if (!expired()) return list;
+        return list.map(p => isOfferProduct(p) ? { ...p, active: false } : p);
+    };
+
+    function initOfferTimer() {
+        if (expired() || document.getElementById("offerTimerBar")) return;
+
+        const toBn = n => String(n).replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+        const pad = n => toBn(String(n).padStart(2, "0"));
+
+        const style = document.createElement("style");
+        style.textContent = `
+            #offerTimerBar{position:sticky;top:0;z-index:10001;width:100%;box-sizing:border-box;
+                display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;
+                padding:8px 12px;background:linear-gradient(90deg,#c62828,#ef6c00);color:#fff;
+                font-family:inherit;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+            #offerTimerBar .ot-text{font-size:14px;font-weight:700;line-height:1.3}
+            #offerTimerBar .ot-boxes{display:flex;gap:6px}
+            #offerTimerBar .ot-box{min-width:46px;padding:3px 6px;border-radius:6px;
+                background:rgba(0,0,0,.28);line-height:1.15}
+            #offerTimerBar .ot-num{display:block;font-size:17px;font-weight:800}
+            #offerTimerBar .ot-lbl{display:block;font-size:10px;opacity:.9}
+            @media(max-width:480px){
+                #offerTimerBar .ot-text{font-size:12px}
+                #offerTimerBar .ot-box{min-width:40px}
+                #offerTimerBar .ot-num{font-size:15px}
+            }`;
+        document.head.appendChild(style);
+
+        const bar = document.createElement("div");
+        bar.id = "offerTimerBar";
+        bar.innerHTML = `
+            <span class="ot-text">🔥 বিশেষ অফার শেষ হতে বাকি:</span>
+            <div class="ot-boxes">
+                <div class="ot-box"><span class="ot-num" id="otDays">০০</span><span class="ot-lbl">দিন</span></div>
+                <div class="ot-box"><span class="ot-num" id="otHours">০০</span><span class="ot-lbl">ঘণ্টা</span></div>
+                <div class="ot-box"><span class="ot-num" id="otMins">০০</span><span class="ot-lbl">মিনিট</span></div>
+                <div class="ot-box"><span class="ot-num" id="otSecs">০০</span><span class="ot-lbl">সেকেন্ড</span></div>
+            </div>`;
+        document.body.insertBefore(bar, document.body.firstChild);
+
+        // হেডার fixed/sticky হলে বারের নিচে নামিয়ে দেয়
+        const header = document.querySelector("header");
+        function syncHeader() {
+            if (!header) return;
+            const pos = getComputedStyle(header).position;
+            if (pos === "fixed" || pos === "sticky") header.style.top = bar.offsetHeight + "px";
+        }
+        syncHeader();
+        window.addEventListener("resize", syncHeader);
+
+        let timerId;
+        function tick() {
+            const left = END_TIME - Date.now();
+            if (left <= 0) {
+                clearInterval(timerId);
+                bar.remove();
+                window.removeEventListener("resize", syncHeader);
+                if (header) header.style.top = "";
+                if (typeof renderHomepage === "function") renderHomepage();
+                if (typeof renderOffersPage === "function") renderOffersPage();
+                return;
+            }
+            const s = Math.floor(left / 1000);
+            document.getElementById("otDays").textContent  = pad(Math.floor(s / 86400));
+            document.getElementById("otHours").textContent = pad(Math.floor((s % 86400) / 3600));
+            document.getElementById("otMins").textContent  = pad(Math.floor((s % 3600) / 60));
+            document.getElementById("otSecs").textContent  = pad(s % 60);
+        }
+        tick();
+        timerId = setInterval(tick, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initOfferTimer);
+    } else {
+        initOfferTimer();
+    }
+})();
